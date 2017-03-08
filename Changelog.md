@@ -3,13 +3,14 @@
 Please READ this changelog before performing the update on your current Framework Version.
 
 ## Versions
-- 1.2.2 ( This Version | Stable )
+- 1.3.0 ( This Version | Stable )
+- 1.2.2
 - 1.2.1
 - 1.2.0
 - 1.0.1 [ Beta ]
 - 1.0.0 [ Beta ]
 
-In order to update the your Framework Version from ( 1.0.* 1.2.0 ) to ( 1.2.2 ) you're subject to read the following doc.
+In order to update the your Framework Version from ( 1.0.* 1.2.* ) to ( 1.3.0 ) you're subject to read the following doc.
 - This update has a brand new features and improvments.
 - This update is not beta.
 

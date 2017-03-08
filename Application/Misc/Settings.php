@@ -61,7 +61,7 @@
        * Displays Erros, Exeptions, In a virtual Userinterface,
        * This Option will be good for non-advanced PHP Programmers.
        * @method BASH :
-       * Dsually, This method is used by the advanced programmers, it Displays
+       * Usually, This method is used by the advanced programmers, it Displays
        * Errors, Warnings, Exceptions by a deffrent method, offering an advanced
        * Tools for Debugging during RunTime. */
        $Settings["INTELLISENSE_INTERFACE"] = "UI"; // UI or BASH

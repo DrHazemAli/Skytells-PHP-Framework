@@ -21,7 +21,7 @@
       * @method Initializing a Single Model
       * - Models Stored in ( Models ) Folder
       */
-      public function model($File, $Args = null, $createObject = false)
+      public function model($File, $setOwner = false, $args = false, $newName = "")
         {
               $path = BASEPATH.'/Application/Models/';
               if (!is_dir($path)){
@@ -31,7 +31,7 @@
               if (!Contains($File, '.php')){
                 $File = $File.".php";
               }
-              if ($Args == true || $Args == false) { $createObject = $Args; $Args = null; }
+
               if (file_exists($path.$File)){
 
                 $class_name = str_replace(".php", "", $File);
@@ -40,13 +40,21 @@
                       set_include_path($path);
                       spl_autoload_extensions('.php');
                       spl_autoload($class_name);
-                      if ($createObject == true) {
-                      if ($Args == null){
-                      $this->$class_name = new $class_name();
-                      }else {
-                        $this->{$class_name} = new $class_name($Args);
+                      //-------------------------------------------------------------------
+                      if ($setOwner != false && is_object($setOwner)){
+                       if (!is_array($args) && $args != false && $args != true){ $newName = $args; $args = false; }
+
+                        $clName = $this->getClassNameFromFile($path.$File); $OwnerObject = $clName;
+
+                        if (!empty($newName)) { $OwnerObject = $newName;  }
+
+                        if ($args != false && is_array($args)){
+                          $refClass = new ReflectionClass($clName);
+                          $setOwner->$OwnerObject = $refClass->newInstanceArgs($args);
+                          }
+                        else { $setOwner->$OwnerObject = new $clName; }
                       }
-                      }
+                      // ----------------------------------------------------------------
                       $this->Runtime->ReportModel($path.$File);
                       return true;
                     }
@@ -60,7 +68,7 @@
       * @method Initializing a Single Model
       * - Models Stored in ( Models ) Folder
       */
-      public function engine($File, $Args = null, $createObject = false)
+      public function engine($File, $setOwner = false, $args = false, $newName = "")
         {
           $path = BASEPATH.'/Application/Library/Engines/';
             if (!is_dir($path)){
@@ -70,7 +78,7 @@
                   if (!Contains($File, '.php')){
                     $File = $File.".php";
                   }
-                  if ($Args == true || $Args == false) { $createObject = $Args; $Args = null; }
+
                   if (file_exists($path.$File)){
 
                     $class_name = str_replace(".php", "", $File);
@@ -79,13 +87,24 @@
                           set_include_path($path);
                           spl_autoload_extensions('.php');
                           spl_autoload($class_name);
-                          if ($createObject == true) {
-                          if ($Args == null){
-                          $this->$class_name = new $class_name();
-                          }else {
-                            $this->{$class_name} = new $class_name($Args);
+
+                          //-------------------------------------------------------------------
+                          if ($setOwner != false && is_object($setOwner)){
+                           if (!is_array($args) && $args != false && $args != true){ $newName = $args; $args = false; }
+
+                            $clName = $this->getClassNameFromFile($path.$File); $OwnerObject = $clName;
+
+                            if (!empty($newName)) { $OwnerObject = $newName;  }
+
+                            if ($args != false && is_array($args)){
+                              $refClass = new ReflectionClass($clName);
+                              $setOwner->$OwnerObject = $refClass->newInstanceArgs($args);
+                              }
+                            else { $setOwner->$OwnerObject = new $clName; }
                           }
-                          }
+                          // ----------------------------------------------------------------
+
+
                           $this->Runtime->ReportController($path.$File);
                           return true;
                         }
@@ -99,7 +118,7 @@
       * @method Initializing a Single Lib
       * - Models Stored in ( Models ) Folder
       */
-      public function library($File, $Args = null, $createObject = false)
+      public function library($File, $setOwner = null, $args = false, $newName = "")
         {
           $path = BASEPATH.'/Application/Library/Libraries/';
             if (!is_dir($path)){
@@ -109,23 +128,33 @@
               if (!Contains($File, '.php')){
                   $File = $File.".php";
                 }
-              if ($Args == true || $Args == false) { $createObject = $Args; $Args = null; }
+
               if (file_exists($path.$File)){
                 $class_name = str_replace(".php", "", $File);
-                  if (!class_exists($class_name)){
 
-                      set_include_path($path);
-                      spl_autoload_extensions('.php');
-                      spl_autoload($class_name);
-                      if ($createObject == true) {
+                      require_once $path.$File;
 
-                      if ($Args == null){ $this->$class_name = new $class_name(); }else {
-                        $this->{$class_name} = new $class_name($Args);
-                        }
+                      //-------------------------------------------------------------------
+                      if ($setOwner != false && is_object($setOwner)){
+                       if (!is_array($args) && $args != false && $args != true){ $newName = $args; $args = false; }
+
+                        $clName = $this->getClassNameFromFile($path.$File); $OwnerObject = $clName;
+
+                        if (!empty($newName)) { $OwnerObject = $newName;  }
+
+                        if ($args != false && is_array($args)){
+                          $refClass = new ReflectionClass($clName);
+                          $setOwner->$OwnerObject = $refClass->newInstanceArgs($args);
+                          }
+                        else { $setOwner->$OwnerObject = new $clName; }
                       }
+                      // ----------------------------------------------------------------
+
                       $this->Runtime->ReportLibrary($path.$File);
 
-                      }
+
+
+
                       }else {
                   throw new Exception("Unable to load : ".$File." Please make sure to type the file name correctly.", 91);
                   }
@@ -135,7 +164,7 @@
       * @method Initializing a Single Helper
       * - Models Stored in ( Models ) Folder
       */
-      public function helper($File)
+      public function helper($File, $setOwner = false, $args = false, $newName = "")
         {
           $path = BASEPATH.'/Application/Library/Helpers/';
             if (!is_dir($path)){
@@ -145,6 +174,22 @@
                     if (file_exists($path.$File)){
                       require_once $path.$File;
                       $this->Runtime->ReportHelper($path.$File);
+
+                      //-------------------------------------------------------------------
+                      if ($setOwner != false && is_object($setOwner)){
+                       if (!is_array($args) && $args != false && $args != true){ $newName = $args; $args = false; }
+
+                        $clName = $this->getClassNameFromFile($path.$File); $OwnerObject = $clName;
+
+                        if (!empty($newName)) { $OwnerObject = $newName;  }
+
+                        if ($args != false && is_array($args)){
+                          $refClass = new ReflectionClass($clName);
+                          $setOwner->$OwnerObject = $refClass->newInstanceArgs($args);
+                          }
+                        else { $setOwner->$OwnerObject = new $clName; }
+                      }
+                      // ----------------------------------------------------------------
                       }else {
                         throw new Exception("Unable to load : ".$File." Please make sure to type the file name correctly.", 91);
                 }

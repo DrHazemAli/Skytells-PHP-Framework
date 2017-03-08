@@ -56,10 +56,8 @@
         {
           // Access this function from ( http://www.domain.com/{Framework_FOLDER}/HomeController/index/ )
 
-        //  $this->load->helper("HtmlParser");
-        //  $html = file_get_html("http://localhost/Framework");
-        //  echo $html;
-      
+
+
         $this->view->HelloWorld = $this->SayHello();
         $this->view->render("index.php");
 

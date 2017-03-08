@@ -103,9 +103,11 @@
     static $_DEV_LOADED_HELPERS = array();
     static $_CONSOLE_OUTPUT   = array();
     static $_FILES_AUTOLOADED = array();
-    static $_FRAMEWORK_VER = "1.2.2";
+    static $_FRAMEWORK_VER = "1.3.0";
     $db = ($Settings["USE_SQL"]) ? new mysqli($DBCONFIG["DB_HOST"], $DBCONFIG["DB_USER"], $DBCONFIG["DB_PASS"], $DBCONFIG["DB_NAME"]) : false;
 
+
+    $L_MDL = (AUTO_LOAD_MODELS && AUTO_LOAD_MODELS === true) ? MDL_DIR : "";
      Autoloader(array(
             MVC_BS,
             CL_DIR,
@@ -113,7 +115,8 @@
             MD_DIR,
             LANG_DIR,
             DB_ENG_DIR,
-            MDL_DIR,
+            $L_MDL,
+
             CONTROLLERS_DIR), false);
 
       // For Debugging, We can print the output.

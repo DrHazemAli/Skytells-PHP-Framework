@@ -10,33 +10,24 @@
  * @author Dr. Hazem Ali ( fb.com/Haz4m )
  * @see The Framework's changelog to be always up to date.
  */
+require __DIR__."/HtmlBuilder/HtmlBuilder.forms.php";
+require __DIR__."/HtmlBuilder/HtmlBuilder.inputs.php";
 
-Class Console
-{
-
-  function __construct()
+  Class HtmlBuilder
     {
-      global $_CONSOLE_OUTPUT;
-    
+      public $forms;
+      function __construct()
+      {
+        try {
+          $this->forms = new HB_Forms();
+          $this->inputs = new HB_Inputs();
+        } catch (Exception $e) {
+          throw new Exception($e->getMessage(), 100);
+
+        }
+
+      }
+
+
+
     }
-
-  public function log($value)
-    {
-      global $_CONSOLE_OUTPUT;
-      array_push($_CONSOLE_OUTPUT, "Console :> $value");
-    }
-
-  public function logEvent($Key, $value)
-    {
-      global $_CONSOLE_OUTPUT;
-      array_push($_CONSOLE_OUTPUT, "$Key :> $value");
-    }
-
-  public function writeln($value)
-    {
-      $this->log($value);
-      return true;
-    }
-
-
-}

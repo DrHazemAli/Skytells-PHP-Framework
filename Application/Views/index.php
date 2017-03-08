@@ -38,6 +38,8 @@
 
 	<?
 
+	        
+
 	// This function associated to the child controller (Views/Home/Controllers/HomeChildController.php);
 t($this->HelloWorld, true);
 
