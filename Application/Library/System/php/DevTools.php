@@ -14,8 +14,14 @@
    $CHelpers = "";
    $CPages = "";
    $CLines = "";
-   global $_CONSOLE_OUTPUT; global $_DEV_LOADED_MODELS; global $_DB_CONNECTION_STATUS; global $_FILES_AUTOLOADED;
-      global $startScriptTime;
+   $CLibs = "";
+   global $_CONSOLE_OUTPUT;
+   global $_DEV_LOADED_MODELS;
+   global $_DB_CONNECTION_STATUS;
+   global $_FILES_AUTOLOADED;
+   global $_DEV_LOADED_LIBRARIES;
+   global $_DEV_LOADED_HELPERS;
+   global $startScriptTime;
       $endScriptTime=microtime(TRUE);
       $totalScriptTime=$endScriptTime-$startScriptTime;
       $_CONS_OUTOUT = "";
@@ -28,6 +34,15 @@
          $_CONS_OUTOUT =  $_CONS_OUTOUT. " &nbsp; ". rtrim(ltrim($c, '//'), '/').'<br>';
        }
    }
+
+   if (isset($_DEV_LOADED_LIBRARIES) && is_array($_DEV_LOADED_LIBRARIES) && count($_DEV_LOADED_LIBRARIES) > 0)
+    {
+
+      foreach ($_DEV_LOADED_LIBRARIES as $c)
+        {
+          $CLibs =  $CLibs. " &nbsp; ". rtrim(ltrim($c, '//'), '/').'<br>';
+        }
+    }
   if (isset($_LOADED_CONTROLLERS) && is_array($_LOADED_CONTROLLERS) && count($_LOADED_CONTROLLERS) > 0)
    {
 
@@ -47,10 +62,10 @@
    }
 
 
-   if (isset($_SESSION["DEV_LOADED_HELPERS"]) && is_array($_SESSION["DEV_LOADED_HELPERS"]) && count($_SESSION["DEV_LOADED_HELPERS"]) > 0)
+   if (isset($_DIV_LOADED_HELPERS) && is_array($_DIV_LOADED_HELPERS) && count($_DIV_LOADED_HELPERS) > 0)
    {
 
-     foreach ($_SESSION["DEV_LOADED_HELPERS"] as $c)
+     foreach ($_DIV_LOADED_HELPERS as $c)
        {
          $CHelpers =  $CHelpers." &nbsp; Helper :> ". rtrim(ltrim($c, '//'), '/')."<br>";
        }
@@ -220,8 +235,12 @@
                         <devText class="devToolsFontOrange" > <? echo count($_DEV_LOADED_MODELS); ?> ( <a href="#" onclick="showResults('Models');">Show</a> )</devText>
                      </div>
                      <div class="devToolscol-12">
+                        Loaded Libraries &nbsp;&nbsp;:
+                        <devText class="devToolsFontOrange" > <? echo count($_DEV_LOADED_LIBRARIES); ?> ( <a href="#" onclick="showResults('Libraries');">Show</a> )</devText>
+                     </div>
+                     <div class="devToolscol-12">
                         Loaded Helpers &nbsp;&nbsp;&nbsp;&nbsp;:
-                        <devText class="devToolsFontOrange" > <? echo count($_SESSION["DEV_LOADED_HELPERS"]); ?> ( <a href="#" onclick="showResults('Helpers');">Show</a> )</devText>
+                        <devText class="devToolsFontOrange" > <? echo count($_DEV_LOADED_HELPERS); ?> ( <a href="#" onclick="showResults('Helpers');">Show</a> )</devText>
                      </div>
                      <div class="devToolscol-12">
                         Console Events &nbsp;&nbsp;&nbsp;&nbsp;:
@@ -235,7 +254,7 @@
       <div id="Debugger" class="w3-container DevTabreports" style="display:none; padding-top:0px;">
          <p id="debuggerLabel" class="w3-text-grey" style="margin:1px; margin-bottom:9px;">Console</p>
          <div  id="debuggerResults" class="ta10" style="width: 100%;  overflow-x:auto;" >
-           <? echo $_CONS_OUTOUT; ?>
+           <? echo $_CONS_OUTOUT.$CLines; ?>
            <br>
          </div>
       </div>
@@ -301,10 +320,16 @@
                   $('#debuggerLabel').empty().html('List of Helpers');
                   $('#debuggerResults').empty().html('<? echo $CHelpers; ?>');
             }
+
+            if (value == 'Libraries')
+                {
+                      $('#debuggerLabel').empty().html('List of Libraries');
+                      $('#debuggerResults').empty().html('<? echo $CLibs; ?>');
+                }
         if (value == "")
           {
             $('#debuggerLabel').empty().html('Console');
-            $('#debuggerResults').empty().html('Files Used for this viewer ( <? echo count($CPages)+count($CLines)+count($CModels)+count($_DEV_LOADED_MODELS); ?> )<BR><? echo $_CONS_OUTOUT; ?>');
+            $('#debuggerResults').empty().html('Files Used for this viewer ( <? echo count($_LOADED_CONTROLLERS)+count($_DEV_LOADED_PAGES)+count($_DEV_LOADED_MODELS)+count($_DEV_LOADED_HELPERS)+count($_DEV_LOADED_LIBRARIES); ?> )<BR><? echo $_CONS_OUTOUT.$CLines; ?>');
 
           }
         toggleDevTab(event, 'Debugger');

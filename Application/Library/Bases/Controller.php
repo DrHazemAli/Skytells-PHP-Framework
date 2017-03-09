@@ -634,4 +634,20 @@
 
 
 
+        public function accessFirewall($owner, $Name = "Firewall")
+          {
+            try {
+              if (!isset($owner)){
+                throw new Exception("Error Processing Request: You have to assgin the owner as a parameter in order to access firewall.", 1);
+
+              }
+              $owner->$Name = $this->Firewall;
+              return $this->Firewall;
+            } catch (Exception $e) {
+              throw new Exception($e->getMessage(), 1);
+
+            }
+
+          }
+
     }

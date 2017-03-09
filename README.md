@@ -1,5 +1,5 @@
 # Skytells Framework for PHP
-Version 1.2.3 ( Current Version )
+Version 1.3.1 ( Current Version )
 <br>
 Skytells Framework is a free and open source framework for PHP.
 <br>
@@ -11,7 +11,8 @@ Please refer to the Changelog.md for any future updates.
 Also, Please see the ( Framework Manual ) to learn how to use it.
 
 #### Versions
-- 1.3.0 ( This Version | Stable )
+- 1.3.1 ( This Version | Stable )
+- 1.3.0
 - 1.2.2
 - 1.2.1
 - 1.0.1
@@ -32,6 +33,8 @@ Also, Please see the ( Framework Manual ) to learn how to use it.
   - Advanced ( MVC ) - ( MVHC ) Support.
   - Super-fast Template Engine
   - GZIP Module ( For Ultra-fast Performance )
+  - Super great libraries
+  - Powerful Engines for DB, etc.
   - Built-in Advanced Firewall
     - SQL Injection Protection
     - XSS Protection

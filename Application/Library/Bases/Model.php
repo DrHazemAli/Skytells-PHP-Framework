@@ -18,7 +18,7 @@
           try {
             if (USE_SQL == FALSE)
               {
-                throw new Exception("Warning: You're using Models while USQ_SQL Option is FALSE!", 600);
+                throw new Exception("Warning: You're using Models while USQ_SQL Option is FALSE!\r\nPlease Turn it to TRUE from the Settings.php File.", 601);
               }
             $this->Debugger = new Debugger();
             $this->console = new Console();

@@ -103,7 +103,7 @@
     static $_DEV_LOADED_HELPERS = array();
     static $_CONSOLE_OUTPUT   = array();
     static $_FILES_AUTOLOADED = array();
-    static $_FRAMEWORK_VER = "1.3.0";
+    static $_FRAMEWORK_VER = "1.3.1";
     $db = ($Settings["USE_SQL"]) ? new mysqli($DBCONFIG["DB_HOST"], $DBCONFIG["DB_USER"], $DBCONFIG["DB_PASS"], $DBCONFIG["DB_NAME"]) : false;
 
 

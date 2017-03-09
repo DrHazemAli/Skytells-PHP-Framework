@@ -109,9 +109,9 @@
           {
             global $_SESSION; global $_LOADED_CONTROLLERS; global $_CONSOLE_OUTPUT;
             array_push($this->LoadedControllers, $Controller);
-            array_push($_CONSOLE_OUTPUT, "Controller Loaded : ". $Controller);
-            array_push($_LOADED_CONTROLLERS, $Controller);
 
+            array_push($_LOADED_CONTROLLERS, $Controller);
+              array_push($_CONSOLE_OUTPUT, "Controller Loaded : ". $Controller);
 
             return true;
           } catch (Exception $e) {

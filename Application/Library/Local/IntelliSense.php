@@ -3947,7 +3947,7 @@
         }
          
         /**
-         * This is a carbon copy of \ErrorException.
+         * This is a IDateTime copy of \ErrorException.
          * However that is only supported in PHP 5.1 and above,
          * so this allows PHP Error to work in PHP 5.0.
          *

@@ -3,7 +3,8 @@
 Please READ this changelog before performing the update on your current Framework Version.
 
 ## Versions
-- 1.3.0 ( This Version | Stable )
+- 1.3.1 ( This Version | Stable )
+- 1.3.0
 - 1.2.2
 - 1.2.1
 - 1.2.0
@@ -54,8 +55,30 @@ Each Version of this Framework may require new modules or extensions to be avail
     - More Improvements And fixes..
 
 
+## Changes
 
-##### How to perform the Update?
+Each change between versions will be shown here.
+
+### Version 1.3.1
+
+Global Updates :
+  * Firewall Whitelisted URLs Feature Added.
+
+Libraries :
+  * MessengerBot Library Added.
+  * IDateTime Library Added.
+  * Google reCAPTCHA v2 Added.
+  * Benchmark Library Added.
+
+Engines :
+  * SQL Manager Improved.
+  * DBObject Improved.
+
+Core :
+  * Development Tools Improved.
+  * Services Loader Improved.
+
+## How to perform the Update?
 Using your browser or Git.
 
 ```sh

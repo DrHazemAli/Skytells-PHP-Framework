@@ -174,6 +174,8 @@
      $Settings["FCHECK_BROWSER"] = TRUE;
      $Settings["STRONG_ENC_KEY"] = "vDx$2S0@cVk-w#";
 
+     // Some Libraries may asks for a permission to skip the Checkpoint.
+     $Firewall["WHITELISTED"] = Array("http://localhost/Framework/Home/bot");
 
    /* Cache Settings ---------------------------------------------------
       * Here you can control the internal caching system.

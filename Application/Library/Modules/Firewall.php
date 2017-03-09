@@ -29,27 +29,39 @@ Class Firewall extends Controller
           }
       }
 
+
+    public function allowUrl($url)
+      {
+        if (!isset($url)){
+          throw new Exception("Error Processing Request: You need to bypass the URL that you want to allow.", 1);
+
+        }
+
+        global $Firewall;
+        array_push($Firewall["WHITELISTED"], $url);
+        return true;
+      }
     public function CheckComputer()
       {
-
-        global $_COOKIE;
-        if (isset($_COOKIE["cn_cls"]) && $_COOKIE["cn_cls"] == md5("1")){
-          @header("Connection: close\r\n");
-          exit("Banned!");
-        }
-        if (!isset($_COOKIE["fw_bw"]) || empty($_COOKIE["fw_bw"]) || $_COOKIE["fw_bw"] != md5(STRONG_ENC_KEY))
-          {
-            $_RED_URI = getUrl();
-            include(SYS_VIEWS."/php/scanner.php");
-            if (checkBrowser() == true) {
-           @setcookie("fw_bw", md5(STRONG_ENC_KEY), 7000+time());
-         }else {
-             @setcookie("cn_cls", md5("1"), 200+time());
-         }
-
-
-            exit;
+        $THIS_URL = getUrl();
+        global $_COOKIE; global $Firewall;
+        if (!in_array($THIS_URL, $Firewall["WHITELISTED"])){
+          if (isset($_COOKIE["cn_cls"]) && $_COOKIE["cn_cls"] == md5("1")){
+            @header("Connection: close\r\n");
+            exit("Banned!");
           }
+          if (!isset($_COOKIE["fw_bw"]) || empty($_COOKIE["fw_bw"]) || $_COOKIE["fw_bw"] != md5(STRONG_ENC_KEY))
+            {
+              $_RED_URI = $THIS_URL;
+              include(SYS_VIEWS."/php/scanner.php");
+              if (checkBrowser() == true) {
+             @setcookie("fw_bw", md5(STRONG_ENC_KEY), 7000+time());
+           }else {
+               @setcookie("cn_cls", md5("1"), 200+time());
+           }
+              exit;
+            }
+        }
       }
     public function SecureUris()
       {
