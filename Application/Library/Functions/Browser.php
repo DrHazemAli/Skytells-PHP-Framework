@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.2.2
+ * @version 1.3.2
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -112,4 +112,12 @@
       if ($checkJavascript == true && $res["javascript"] == 0) { return false; }
 
       return true;
+    }
+
+
+  function show_404()
+    {
+      header("HTTP/1.0 404 Not Found");
+      require SYS_VIEWS.'/html/404.html';
+      exit;
     }

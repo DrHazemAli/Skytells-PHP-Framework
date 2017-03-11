@@ -3,7 +3,8 @@
 Please READ this changelog before performing the update on your current Framework Version.
 
 ## Versions
-- 1.3.1 ( This Version | Stable )
+- 1.3.2 ( This Version | Stable )
+- 1.3.1
 - 1.3.0
 - 1.2.2
 - 1.2.1
@@ -59,16 +60,19 @@ Each Version of this Framework may require new modules or extensions to be avail
 
 Each change between versions will be shown here.
 
-### Version 1.3.1
+### Version 1.3.2
 
 Global Updates :
   * Firewall Whitelisted URLs Feature Added.
+  * Performance Improvements
 
 Libraries :
   * MessengerBot Library Added.
   * IDateTime Library Added.
   * Google reCAPTCHA v2 Added.
   * Benchmark Library Added.
+  * Password Policy Added.
+  * File Streaming Library Added.
 
 Engines :
   * SQL Manager Improved.
@@ -77,6 +81,24 @@ Engines :
 Core :
   * Development Tools Improved.
   * Services Loader Improved.
+  * Namespaces Support.
+
+
+
+#### Changes from version 1.3.1 to 1.3.2
+
+Before performing an update from 1.3.1 to 1.3.2, Please take a look of the changes in this release.
+
+FILES & FOLDERS :
+  * New Settings folder - (Application/Misc/Config)
+  * File (~root/Router.php) File moved to (Application/Misc/Config/Routes.php)
+  * Firewall Settings File is here : (Application/Misc/Config/Firewall.php)
+
+THINGS TO DO :
+  * Controllers Settings are not available in (Application/Misc/Config/Routes.php)
+    * You need to set the DEFAULT_CONTROLLER of your Application.
+    * By default, this option set to (Home) Controller.
+
 
 ## How to perform the Update?
 Using your browser or Git.

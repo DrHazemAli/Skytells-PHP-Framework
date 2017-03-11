@@ -3,13 +3,14 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.2.2
+ * @version 1.3.2
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
  * @author Dr. Hazem Ali ( fb.com/Haz4m )
  * @see The Framework's changelog to be always up to date.
  */
+
   Class Home extends Controller
     {
 
@@ -52,18 +53,20 @@
        * @method Index function.
        * This function cannot be deleted.
        */
-      public function index($arg1 = "", $arg2 = "")
+      public function index()
         {
           // Access this function from ( http://www.domain.com/{Framework_FOLDER}/HomeController/index/ )
-
-
+      
 
         $this->view->HelloWorld = $this->SayHello();
         $this->view->render("index.php");
 
         }
 
-    
+
+      public function test($arg1 = "", $arg2 = ""){
+        echo "test ->".$arg1.$arg2;
+      }
       protected function SayHello()
         {
           return "<p>Thanks for using Skytells Framework for PHP.</p>

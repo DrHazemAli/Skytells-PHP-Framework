@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.2.2
+ * @version 1.3.2
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -14,6 +14,13 @@
   * @method Initializing Required Definetions
   * - Drivers, Controllers, Models ..etc
   */
+  function defineRoutesConfig()
+  {
+     global $Routes;
+    foreach ($Routes["CONFIG"] as $Key => $Val) {
+      if (!defined("ROUTES_CONFIG_". $Key)) { define("ROUTES_CONFIG_". $Key, $Val); }
+    }
+  }
   function DefSettings()
      {
        try
@@ -22,6 +29,7 @@
          global $DBCONFIG;
          global $MODULES;
          global $CORE_ENGINES;
+
          foreach ($Settings as $Key => $Val)
            {
              if (!defined($Key))
@@ -41,6 +49,9 @@
          foreach ($CORE_ENGINES as $Key => $Val) {
            if (!defined("CORE_ENGINE_". $Key)) { define("CORE_ENGINE_". $Key, $Val); }
          }
+
+
+
        } catch (Exception $e) {
          exit($e->getMessage());
        }
@@ -171,7 +182,7 @@
       }else{
           echo $string;
       }
-    
+
     }
 
   function d($array, $json = false)

@@ -17,7 +17,32 @@
       return true;
     }
 
+function isCached($url = null)
+  {
+    if ($url == null || empty($url)){
+          $url = $_SERVER['REQUEST_URI'];
+      }
+        $url = md5($url);
+      if (file_exists("./Application/".CACHE_DIR."/".$url)){
+        return true;
+      }else{
+        return false;
+      }
+  }
 
+  function flushPageCache($url = "")
+  {
+    if ($url == null || empty($url)){
+          $url = $_SERVER['REQUEST_URI'];
+      }
+        $url = md5($url);
+      if (file_exists("./Application/".CACHE_DIR."/".$url)){
+        unlink(CACHE_DIR."/".$url);
+        return true;
+      }else{
+        return false;
+      }
+  }
   function isFunctionExist($ClassName, $Function, $ReturnType = "Page")
       {
         if ( !method_exists($ClassName, $Function) )

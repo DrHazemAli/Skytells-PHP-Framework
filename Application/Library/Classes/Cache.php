@@ -4,7 +4,7 @@ Class Cache extends Controller {
    * Skytells PHP Framework --------------------------------------------------*
    * @category   Web Development ( Programming )
    * @package    Skytells PHP Framework
-   * @version 1.2.2
+   * @version 1.3.2
    * @license Freeware
    * @copyright  2007-2017 Skytells, Inc. All rights reserved.
    * @license    https://www.skytells.net/us/terms  Freeware.
@@ -22,6 +22,8 @@ Class Cache extends Controller {
     var $cacheFileName;
     var $cacheLogFile;
     var $cacheLog;
+
+
 
     function __construct(){
         global $CH_EXCLUSION;
@@ -62,12 +64,8 @@ Class Cache extends Controller {
                     $this->caching = false;
 
                     echo file_get_contents($this->cacheFileName);
-  
-                    if (DEVELOPMENT_MODE == TRUE)
-                      {
 
-                        require_once(SYS_VIEWS."/php/DevTools.php");
-                      }
+                  if (DEVELOPMENT_MODE == TRUE) { require_once(SYS_VIEWS."/php/DevTools.php"); }
                     exit();
                 }else{
                     $this->caching = true;

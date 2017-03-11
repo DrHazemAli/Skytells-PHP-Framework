@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.2.2
+ * @version 1.3.2
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -146,15 +146,17 @@
      $MODULES = Array(
                         "Core"            => TRUE,
                         "CSRFProtection"  => TRUE,
-                        "Firewall"        => TRUE,
+                        "Firewall"        => TRUE, // -> Settings File : (Application/Misc/Config/Firewall.php)
                         "XSSProtection"   => TRUE
                      );
 
 
 
-  /* Security Settings ---------------------------------------------------
+  /**
+   * Security Settings ---------------------------------------------------
    * Here you can manage the internal security features, like Firewall
    * module, or CSRFProtection, If you use an third-party module
+   * @category Firewall Settings File : is located in (Application/Misc/Config/Firewall.php)
    * Please make sure to enable it first. ----------*/
 
      // If XSSProtection Module is Enabled.
@@ -166,16 +168,7 @@
      $Settings["AUTO_SECURE_SESSIONS"]   = TRUE;
 
 
-     // If Firewall Module is Enabled.
-     $Settings["FIREWALL_ANTI_DDOS"] = TRUE;
-     $Settings["FIREWALL_ANTI_DDOS_INTERVAL"] = 1;
 
-     // Check Browser before accessing the website.
-     $Settings["FCHECK_BROWSER"] = TRUE;
-     $Settings["STRONG_ENC_KEY"] = "vDx$2S0@cVk-w#";
-
-     // Some Libraries may asks for a permission to skip the Checkpoint.
-     $Firewall["WHITELISTED"] = Array("http://localhost/Framework/Home/bot");
 
    /* Cache Settings ---------------------------------------------------
       * Here you can control the internal caching system.

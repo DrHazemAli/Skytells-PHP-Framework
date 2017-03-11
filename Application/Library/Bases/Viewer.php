@@ -11,7 +11,7 @@ Class Viewer extends Controller
       $this->load = new Loader();
       $this->Runtime = new Runtime();
       // $this->getReady();
-      $this->Cache = new Cache();
+
     }
 
   public function render($File, $Params = null, $SkipCaching = false, $Parses = null, $cFilters = null)
@@ -23,8 +23,8 @@ Class Viewer extends Controller
         if ($Params == true) { $SkipCaching = true; }
         if (is_array($SkipCaching)) { $Parses = $SkipCaching; $SkipCaching = false; }
         // This will set SkipCaching to True when passed as 2nd param.
+        if ($SkipCaching == true) { flushPageCache(); }
 
-        if (USE_CACHE && $SkipCaching == false) { $this->Cache->Start(); }
           $this->AnalyzeLangugage();
 
         $Path = explode('/', $File);
@@ -83,11 +83,7 @@ Class Viewer extends Controller
           }
         $this->Runtime->ReportPage(VW_DIR.$File);
 
-        if (USE_CACHE && $SkipCaching == false) { $this->Cache->End(); }
-        if (DEVELOPMENT_MODE == TRUE)
-          {
-            require_once(SYS_VIEWS."/php/DevTools.php");
-          }
+
       }
       catch(Exception $e)
       {

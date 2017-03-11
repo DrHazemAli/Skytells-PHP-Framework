@@ -3,13 +3,20 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.2.2
+ * @version 1.3.2
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
  * @author Dr. Hazem Ali ( fb.com/Haz4m )
  * @see The Framework's changelog to be always up to date.
  */
+  global $startScriptTime;
+  $endScriptTime=microtime(TRUE);
+  $totalScriptTime=$endScriptTime-$startScriptTime;
+   $lang = (!isset($Core) || !is_object($Core)) ? $this->ActiveLanguage  : $Core->ActiveLanguage ;
+   $IsCached = isCached();
+   $WARNINGS_C = 0;
+   if ($IsCached == true) { $WARNINGS_C++; }
    $CModels = "";
    $CHelpers = "";
    $CPages = "";
@@ -21,9 +28,8 @@
    global $_FILES_AUTOLOADED;
    global $_DEV_LOADED_LIBRARIES;
    global $_DEV_LOADED_HELPERS;
-   global $startScriptTime;
-      $endScriptTime=microtime(TRUE);
-      $totalScriptTime=$endScriptTime-$startScriptTime;
+
+
       $_CONS_OUTOUT = "";
   global $_LOADED_CONTROLLERS; global $_DEV_LOADED_PAGES;
   if (isset($_CONSOLE_OUTPUT) && is_array($_CONSOLE_OUTPUT) && count($_CONSOLE_OUTPUT) > 0)
@@ -161,7 +167,7 @@
    <nav class="w3-sidenav" style="width:110px; max-height: 95px; margin-top:8px; z-index:999999; padding-right:1px;">
       <a href="javascript:void(0)" class="tablink w3-text-cyan" onclick="toggleDevTab(event, 'Reports')">REPORTS</a>
       <a href="javascript:void(0)" class="tablink w3-text-teal" onclick="showResults();">DEBUGGER</a>
-      <a href="javascript:void(0)" class="tablink w3-text-orange" onclick="toggleDevTab(event, 'Tokyo')">WARNINGS</a>
+      <a href="javascript:void(0)" class="tablink w3-text-orange" onclick="toggleDevTab(event, 'Warnings')">WARNINGS (<?= $WARNINGS_C; ?>)</a>
       <a href="javascript:void(0)" class="tablink w3-text-khaki" onclick="toggleDevTab(event, 'Loaded')">AUTOLOADED</a>
    </nav>
    <div style="margin-left:100px; padding-top:6px;">
@@ -195,10 +201,11 @@
 
 
                   </td>
+
                   <td>
                      <div class="devToolscol-12">
                         Active Language &nbsp; &nbsp;:
-                        <devText class="devToolsFontOrange"> <? echo $this->ActiveLanguage; ?> ( <a href="?lang=en">Change</a> )</devText>
+                        <devText class="devToolsFontOrange"> <? echo $lang; ?> ( <a href="?lang=en">Change</a> )</devText>
                      </div>
                      <div class="devToolscol-12">
                         Framework Version &nbsp;:
@@ -258,7 +265,13 @@
            <br>
          </div>
       </div>
-      <div id="Tokyo" class="w3-container DevTabreports" style="display:none">
+      <div id="Warnings" class="w3-container DevTabreports" style="display:none">
+        <? if ($IsCached) { ?>
+        <div class="devToolscol-12 w3-text-orange">
+           CACHE WARNING &nbsp; &nbsp;:
+           <devText class="w3-text-purple">The entire content for this page including Controllers, Models and DB Results are completly cached, The resources for this page is not loaded.</devText>
+        </div>
+        <? } ?>
       </div>
 
       <div id="Loaded" class="w3-container DevTabreports" style="display:none; padding-top:0px;">

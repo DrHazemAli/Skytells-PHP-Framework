@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.2.2
+ * @version 1.3.2
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -41,11 +41,22 @@ Class Firewall extends Controller
         array_push($Firewall["WHITELISTED"], $url);
         return true;
       }
+
+    private function isWhitelisted($url)
+        {
+          global $Firewall;
+          foreach ($Firewall["WHITELISTED"] as $val) {
+            if (strpos($url, $val) !== false){
+              return true;
+            }
+          }
+          return false;
+        }
     public function CheckComputer()
       {
         $THIS_URL = getUrl();
-        global $_COOKIE; global $Firewall;
-        if (!in_array($THIS_URL, $Firewall["WHITELISTED"])){
+        global $_COOKIE;
+        if (!$this->isWhitelisted($THIS_URL)){
           if (isset($_COOKIE["cn_cls"]) && $_COOKIE["cn_cls"] == md5("1")){
             @header("Connection: close\r\n");
             exit("Banned!");

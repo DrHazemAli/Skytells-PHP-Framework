@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.2.2
+ * @version 1.3.2
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -32,7 +32,7 @@
 
     }
 
-    function setDefaultReply($Reply)
+    public function setDefaultReply($Reply)
     {
       if (!isset($Reply)){
         throw new ErrorException("Default Reply parameter is missing!", 1);
@@ -44,7 +44,7 @@
       $this->DefaultReply = $Reply;
       return true;
     }
-    function setReplies($_array_of_replies)
+    public function setReplies($_array_of_replies)
     {
       if (!is_array($_array_of_replies)){
         throw new ErrorException("The replies must be an array", 1);
@@ -55,7 +55,7 @@
     }
 
 
-    function run()
+    public function run()
     {
       if (isset($_REQUEST['hub_challenge'])) {
             $challenge = Request("hub_challenge");
@@ -77,18 +77,18 @@
                if(!empty($Reply)){
 
                  if (strpos($key, $message) !== false){
-                   return $this->sendReply($sender, $Reply);
+                   return $this->sendReply($input, $sender, $Reply);
 
                  }
                }
              }
            }
 
-        return $this->sendReply($sender, $this->DefaultReply);
+        return $this->sendReply($input, $sender, $this->DefaultReply);
     }
 
 
-    function sendReply($sender, $message_to_reply)
+    function sendReply($input, $sender, $message_to_reply)
     {
       try {
         ini_set('user_agent','Mozilla/4.0 (compatible; MSIE 6.0)');

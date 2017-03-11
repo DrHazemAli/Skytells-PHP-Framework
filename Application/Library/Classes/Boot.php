@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.2.2
+ * @version 1.3.2
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -28,9 +28,11 @@
             $_MVURI = $__MVCallback;
             $HomePage = getExplosion($_MVURI, 1);
             if (!isset($HomePage) || is_null($HomePage) || empty($HomePage)){
-              if (file_exists(CONTROLLERS_DIR."Home.php") ){
-                $Home = new Home();
-                  $Home->index();
+              $DEFAULT_CONTROLLER = ROUTES_CONFIG_DEFAULT_CONTROLLER;
+              $DEFAULT_CONTROLLER_METHOD = ROUTES_CONFIG_DEFAULT_METHOD;
+              if (file_exists(CONTROLLERS_DIR.$DEFAULT_CONTROLLER.".php") ){
+                $Home = new $DEFAULT_CONTROLLER();
+                  $Home->$DEFAULT_CONTROLLER_METHOD();
                   return false;
               }
               loadPage("index.php");
@@ -48,19 +50,27 @@
                 }
                 $_CTR = new $_ctrlName(); // Create a new Object for the Controller.
                   if ($_funcName = getExplosion($_MVURI, 2)){ /* Check if Exists */  if ( isFunctionExist($_ctrlName, $_funcName ) ){
-                              switch ($_MVURI) {
-                                case getExplosion($_MVURI, 3) != false && getExplosion($_MVURI, 4) == false:
-                                    $_CTR->$_funcName(getExplosion($_MVURI, 3));
-                                  break;
+                          $this->mvcroute = explode('/', $_MVURI);
 
-                                case getExplosion($_MVURI, 4) != false:
-                                      $_CTR->$_funcName(getExplosion($_MVURI, 3), getExplosion($_MVURI, 4));
-                                  break;
-                                default:
-                                  $_CTR->$_funcName(); // If No Args..
-                                  break;
-                              }
+                          /*** load arguments for action ***/
+                          $arguments = array();
+                          foreach ($this->mvcroute as $key => $val)
+                            {
+                              if ($key != 0 && $key != 1 && $key != 2 && !empty($val))
+                                {
+                                  $arguments[$key] = $val;
+                                }
+                            }
+
+
+                            /*** execute controller action w/ parameters ***/
+                            call_user_func_array(array($_CTR, $_funcName), $arguments);
                           }
+                      }else{
+                        if (ROUTES_CONFIG_INIT_DEFALUT_METHOD_AUTOMATICALLY == true && isFunctionExist($_ctrlName, ROUTES_CONFIG_DEFAULT_METHOD)){
+                            $DEFAULT_CONTROLLER_METHOD = ROUTES_CONFIG_DEFAULT_METHOD;
+                          $_CTR->$DEFAULT_CONTROLLER_METHOD();
+                        }
                       }
                 }
               }

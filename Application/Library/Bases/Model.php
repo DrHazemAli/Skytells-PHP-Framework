@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.2.2
+ * @version 1.3.2
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -18,9 +18,9 @@
           try {
             if (USE_SQL == FALSE)
               {
-                throw new Exception("Warning: You're using Models while USQ_SQL Option is FALSE!\r\nPlease Turn it to TRUE from the Settings.php File.", 601);
+                throw new Exception("Warning: You're using Models while USQ_SQL Option is FALSE!, Please Turn it to TRUE from the Settings.php File.", 601);
               }
-            $this->Debugger = new Debugger();
+
             $this->console = new Console();
             $this->db = new SQLManager($this->getDbConfig());
             global $_DB_CONNECTION_STATUS;
