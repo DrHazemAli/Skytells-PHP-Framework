@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.3.2
+ * @version 1.4.0
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -202,6 +202,17 @@
 
                   </td>
 
+
+
+
+
+
+
+
+
+
+
+
                   <td>
                      <div class="devToolscol-12">
                         Active Language &nbsp; &nbsp;:
@@ -209,7 +220,7 @@
                      </div>
                      <div class="devToolscol-12">
                         Framework Version &nbsp;:
-                        <devText class="w3-text-grey"><? global $_FRAMEWORK_VER; echo $_FRAMEWORK_VER; ?></devText>
+                        <devText class="w3-text-grey"><? global $_FRAMEWORK_VER; echo $_FRAMEWORK_VER; ?> <? if (ALLOW_TERMINAL == TRUE) { ?> &nbsp;( <a href="#" title="Open Terminal" class="openModal">Terminal</a> ) <? } ?></devText>
                      </div>
                      <div class="devToolscol-12">
                         Firewall Module &nbsp; &nbsp;:
@@ -254,12 +265,20 @@
                         <devText class="devToolsFontOrange" > <? echo count($_CONSOLE_OUTPUT); ?> ( <a href="#" onclick="showResults('');">Show</a> )</devText>
                      </div>
                   </td>
+
+
+
+
+
+
+
+
                </tr>
             </div>
          </table>
       </div>
       <div id="Debugger" class="w3-container DevTabreports" style="display:none; padding-top:0px;">
-         <p id="debuggerLabel" class="w3-text-grey" style="margin:1px; margin-bottom:9px;">Console</p>
+         <p id="debuggerLabel" class="w3-text-grey" style="margin:1px; margin-bottom:9px;">Console   </p>
          <div  id="debuggerResults" class="ta10" style="width: 100%;  overflow-x:auto;" >
            <? echo $_CONS_OUTOUT.$CLines; ?>
            <br>
@@ -370,3 +389,4 @@
        });
    })
 </script>
+<? require __DIR__."/Terminal.php"; ?>

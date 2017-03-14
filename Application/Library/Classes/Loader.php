@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.3.2
+ * @version 1.4.0
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -64,6 +64,55 @@
                 throw new Exception("Unable to load : ".$File." Please make sure to type the file name correctly.", 91);
               }
           }
+
+      /**
+      * @method Initializing a Single Model
+      * - Models Stored in ( Models ) Folder
+      */
+      public function childModel($File, $setOwner = false, $args = false, $newName = "")
+            {
+                  $path = BASEPATH.'/Application/Views/';
+                  if (!is_dir($path)){
+                    throw new Exception("The Models Folder does not exist in the main Application dir.", 90);
+                    return false;
+                  }
+                  if (!Contains($File, '.php')){
+                    $File = $File.".php";
+                  }
+
+                  if (file_exists($path.$File)){
+
+                    $class_name = str_replace(".php", "", $File);
+                      if (!class_exists($class_name)){
+
+                          set_include_path($path);
+                          spl_autoload_extensions('.php');
+                          spl_autoload($class_name);
+                          //-------------------------------------------------------------------
+                          if ($setOwner != false && is_object($setOwner)){
+                           if (!is_array($args) && $args != false && $args != true){ $newName = $args; $args = false; }
+
+                            $clName = $this->getClassNameFromFile($path.$File); $OwnerObject = $clName;
+
+                            if (!empty($newName)) { $OwnerObject = $newName;  }
+
+                            if ($args != false && is_array($args)){
+                              $refClass = new ReflectionClass($clName);
+                              $setOwner->$OwnerObject = $refClass->newInstanceArgs($args);
+                              }
+                            else { $setOwner->$OwnerObject = new $clName; }
+                          }
+                          // ----------------------------------------------------------------
+                          $this->Runtime->ReportModel($path.$File);
+                          return true;
+                        }
+
+                  }else {
+                    throw new Exception("Unable to load : ".$File." Please make sure to type the file name correctly.", 91);
+                  }
+              }
+
+
 
       /**
       * @method Initializing a Single Model

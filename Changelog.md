@@ -3,7 +3,8 @@
 Please READ this changelog before performing the update on your current Framework Version.
 
 ## Versions
-- 1.3.2 ( This Version | Stable )
+- 1.4.0 ( This Version | Stable )
+- 1.3.2
 - 1.3.1
 - 1.3.0
 - 1.2.2
@@ -60,7 +61,7 @@ Each Version of this Framework may require new modules or extensions to be avail
 
 Each change between versions will be shown here.
 
-### Version 1.3.2
+### Version 1.4.0
 
 Global Updates :
   * Firewall Whitelisted URLs Feature Added.
@@ -73,6 +74,7 @@ Libraries :
   * Benchmark Library Added.
   * Password Policy Added.
   * File Streaming Library Added.
+  * File Uploader Library Added.
 
 Engines :
   * SQL Manager Improved.
@@ -85,14 +87,15 @@ Core :
 
 
 
-#### Changes from version 1.3.1 to 1.3.2
+#### Changes from version 1.3.2 to 1.4.0
 
-Before performing an update from 1.3.1 to 1.3.2, Please take a look of the changes in this release.
+Before performing an update from 1.3.2 to 1.4.0, Please take a look of the changes in this release.
 
 FILES & FOLDERS :
   * New Settings folder - (Application/Misc/Config)
   * File (~root/Router.php) File moved to (Application/Misc/Config/Routes.php)
   * Firewall Settings File is here : (Application/Misc/Config/Firewall.php)
+  * Terminal Settings File is here : (Application/Misc/Config/Terminal.php)
 
 THINGS TO DO :
   * Controllers Settings are not available in (Application/Misc/Config/Routes.php)

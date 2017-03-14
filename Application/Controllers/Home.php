@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.3.2
+ * @version 1.4.0
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -56,17 +56,15 @@
       public function index()
         {
           // Access this function from ( http://www.domain.com/{Framework_FOLDER}/HomeController/index/ )
-      
+
 
         $this->view->HelloWorld = $this->SayHello();
         $this->view->render("index.php");
 
         }
 
+      
 
-      public function test($arg1 = "", $arg2 = ""){
-        echo "test ->".$arg1.$arg2;
-      }
       protected function SayHello()
         {
           return "<p>Thanks for using Skytells Framework for PHP.</p>

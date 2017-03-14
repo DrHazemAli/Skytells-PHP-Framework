@@ -1,6 +1,14 @@
 <?php
 /**
- *
+ * Skytells PHP Framework --------------------------------------------------*
+ * @category   Web Development ( Programming )
+ * @package    Skytells PHP Framework
+ * @version 1.4.0
+ * @license Freeware
+ * @copyright  2007-2017 Skytells, Inc. All rights reserved.
+ * @license    https://www.skytells.net/us/terms  Freeware.
+ * @author Dr. Hazem Ali ( fb.com/Haz4m )
+ * @see The Framework's changelog to be always up to date.
  */
 Class Viewer extends Controller
 {
@@ -59,7 +67,9 @@ Class Viewer extends Controller
 
 
         if (is_array($Parses) && !empty($Parses) && $Parses != null){
-           if (class_exists("TemplateEngine")) {
+           if (!class_exists("TemplateEngine")) {
+             require ENGINES_DIR.'templateengine.php';
+              }
              $UI_Content = file_get_contents(VW_DIR.$File);
              $te = new TemplateEngine($UI_Content);
 
@@ -76,7 +86,7 @@ Class Viewer extends Controller
              $TParses = array_merge($lang, $Parses);
              echo $te->apply ($TParses);
 
-           }else { require_once(VW_DIR.$File); }
+
            }
            else {
           require_once(VW_DIR.$File);
@@ -93,7 +103,7 @@ Class Viewer extends Controller
 
     }
 
-
+  
 
 
 }

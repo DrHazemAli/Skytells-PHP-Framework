@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.3.2
+ * @version 1.4.0
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -14,6 +14,7 @@
     $startScriptTime=microtime(TRUE);
     require_once("Misc/Settings.php");
     require_once("Misc/Config/Firewall.php");
+    require_once("Misc/Config/Terminal.php");
     global $Settings;
     ini_set('zlib.output_compression_level', $Settings['GZIP_COMPRESSION_LEVEL']);
     if ($Settings['ENABLE_COMPRESSION'] == true) { if(!ob_start("ob_gzhandler")) ob_start(); }else { ob_start(); }
@@ -104,7 +105,7 @@
     static $_DEV_LOADED_HELPERS = array();
     static $_CONSOLE_OUTPUT   = array();
     static $_FILES_AUTOLOADED = array();
-    static $_FRAMEWORK_VER = "1.3.1";
+    static $_FRAMEWORK_VER = "1.4.0";
     $db = ($Settings["USE_SQL"]) ? new mysqli($DBCONFIG["DB_HOST"], $DBCONFIG["DB_USER"], $DBCONFIG["DB_PASS"], $DBCONFIG["DB_NAME"]) : false;
 
 
