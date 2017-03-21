@@ -5,47 +5,101 @@
 	* Remove (#) from {#CACHE:EXCLUDE!} to EXCLUDE this page from caching.
 	* To remove cached files please pass this parameter to any page ( GET: ?Action=FlushCache )
 	-->
-
+<html>
 <head>
-	<title><?=l('PAGE_TITLE');?></title>
 	<link rel="icon" href="<?= SITEBASE; ?>/favicon.png">
-	<style>
-		body {
-			background-color: #2D2D2D;
-		}
-
-		h1 {
-			color: #C26356;
-			font-size: 30px;
-			font-family: Menlo, Monaco, fixed-width;
-		}
-
-		p {
-			color: white;
-			font-family: "Source Code Pro", Menlo, Monaco, fixed-width;
-		}
-    small {
-      color: white;
-			font-family: "Source Code Pro", Menlo, Monaco, fixed-width;
-      font-size: 12px;
-    }
-	</style>
+	<meta charset="utf-8">
+			 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+			 <meta name="viewport" content="width=device-width, initial-scale=1">
+			 <title><?=l('PAGE_TITLE');?></title>
+			 <!-- Fonts -->
+			 <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+			 <!-- Styles -->
+			 <style>
+					 html, body {
+							 background-color: #fff;
+							 color: #636b6f;
+							 font-family: 'Raleway', sans-serif;
+							 font-weight: 100;
+							 height: 100vh;
+							 margin: 0;
+					 }
+					 .full-height {
+							 height: 100vh;
+					 }
+					 .flex-center {
+							 align-items: center;
+							 display: flex;
+							 justify-content: center;
+					 }
+					 .position-ref {
+							 position: relative;
+					 }
+					 .top-right {
+							 position: absolute;
+							 right: 10px;
+							 top: 18px;
+					 }
+					 .content {
+							 text-align: center;
+					 }
+					 .title {
+							 font-size: 84px;
+					 }
+					 .subtitle {
+							 font-size: 40px;
+					 }
+					 .links > a {
+							 color: #636b6f;
+							 padding: 0 25px;
+							 font-size: 12px;
+							 font-weight: 600;
+							 letter-spacing: .1rem;
+							 text-decoration: none;
+							 text-transform: uppercase;
+					 }
+					 .m-b-md {
+							 margin-bottom: 30px;
+					 }
+			 </style>
 </head>
 <body>
-	<div align="center"><br><h1>Hello World!</h1>
 
-    <br>
+	<body>
+        <div class="flex-center position-ref full-height">
 
-	<?
+                <div class="top-right links">
 
-	        
+                        <a href="<?= SITEBASE; ?>">Home</a>
 
-	// This function associated to the child controller (Views/Home/Controllers/HomeChildController.php);
-t($this->HelloWorld, true);
+                        <a href="https://developers.skytells.net/framework">Documentation</a>
 
 
-	?>
+                </div>
 
-  <div align="center"><small><p><?=	t( Request("testParameter") ); ?></p>© 2017 Dr. Hazem Ali, All rights reserved.</small></div>
-</body>
+
+            <div class="content">
+                <div class="title m-b-md">
+                    Welcome to Skytells!
+                </div>
+								<div class="subtitle m-b-md">
+									Bringing Data to Life!
+								</div>
+
+                <div class="links">
+                    <a href="https://developers.skytells.net/framework">Documentation</a>
+                    <a href="https://developers.skytells.net/framework/overview">Overview</a>
+                    <a href="https://developers.skytells.net/framework/Packages">Packages</a>
+                    <a href="https://developers.skytells.net/framework/License">License</a>
+                    <a href="https://github.com/DrHazemAli/Skytells-PHP-Framework">GitHub</a>
+                </div>
+
+								<br>
+								<small><p><?=	t( Request("testParameter") ); ?></p>© 2017 Dr. Hazem Ali, All rights reserved.</small>
+            </div>
+
+        </div>
+
+    </body>
+
 </html>

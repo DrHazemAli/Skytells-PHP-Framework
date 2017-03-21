@@ -3,7 +3,8 @@
 Please READ this changelog before performing the update on your current Framework Version.
 
 ## Versions
-- 1.4.0 ( This Version | Stable )
+- 2.0.0 ( This Version | Stable )
+- 1.4.0
 - 1.3.2
 - 1.3.1
 - 1.3.0
@@ -61,7 +62,7 @@ Each Version of this Framework may require new modules or extensions to be avail
 
 Each change between versions will be shown here.
 
-### Version 1.4.0
+### Version 2.0.0
 
 Global Updates :
   * Firewall Whitelisted URLs Feature Added.
@@ -87,9 +88,9 @@ Core :
 
 
 
-#### Changes from version 1.3.2 to 1.4.0
+#### Changes from version 1.4.0 to 2.0.0
 
-Before performing an update from 1.3.2 to 1.4.0, Please take a look of the changes in this release.
+Before performing an update from 1.4.0 to 2.0.0, Please take a look of the changes in this release.
 
 FILES & FOLDERS :
   * New Settings folder - (Application/Misc/Config)

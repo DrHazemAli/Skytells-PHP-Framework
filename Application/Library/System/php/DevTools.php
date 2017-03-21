@@ -3,7 +3,7 @@
  * Skytells PHP Framework --------------------------------------------------*
  * @category   Web Development ( Programming )
  * @package    Skytells PHP Framework
- * @version 1.4.0
+ * @version 2.0.0
  * @license Freeware
  * @copyright  2007-2017 Skytells, Inc. All rights reserved.
  * @license    https://www.skytells.net/us/terms  Freeware.
@@ -91,6 +91,10 @@
 
    ?>
 <style>
+.bg-none{
+  background:none;
+  background-color:none;
+}
    .devToolscol-1 {width: 8.33%;}
    .devToolscol-2 {width: 16.66%;}
    .devToolscol-3 {width: 25%;}
@@ -141,12 +145,16 @@
    cursor: pointer;
    }
    .DevToolsfTab.active {
-   bottom: 90px;
+     bottom: 114px;
+      height: 10px;
    z-index: 4;
    padding: 0.9rem 2rem;
-   border: none;
+
    }
    .DevToolsfTab.active + DevToolsfooter {
+     -webkit-box-shadow: 0px 0px 16px rgba(0,0,0,.2);
+               -moz-box-shadow: 0px 0px 16px rgba(0,0,0,.2);
+                          box-shadow: 0px 0px 16px rgba(0,0,0,.2);
    max-height: 95px;
    padding: 1.0rem;
    padding-left: 1px;
@@ -164,7 +172,7 @@
 <span class="DevToolsfTab"><img src="<?= SITEBASE; ?>/Application/Library/System/images/devIcon.png" style="width: 24px; height: 24px;" title="Open Developer Tools"></span>
 <DevToolsfooter id="DevToolsfooter">
 
-   <nav class="w3-sidenav" style="width:110px; max-height: 95px; margin-top:8px; z-index:999999; padding-right:1px;">
+   <nav class="w3-sidenav bg-none" style="width:110px; max-height: 95px; margin-top:8px; z-index:999999; padding-right:1px;">
       <a href="javascript:void(0)" class="tablink w3-text-cyan" onclick="toggleDevTab(event, 'Reports')">REPORTS</a>
       <a href="javascript:void(0)" class="tablink w3-text-teal" onclick="showResults();">DEBUGGER</a>
       <a href="javascript:void(0)" class="tablink w3-text-orange" onclick="toggleDevTab(event, 'Warnings')">WARNINGS (<?= $WARNINGS_C; ?>)</a>

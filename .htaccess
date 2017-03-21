@@ -2,9 +2,13 @@
 RewriteEngine On
 RewriteBase /Framework/
 RewriteRule ^index\.php$ - [L]
+RewriteRule ^assets/(.*)$ Application/Views/assets/$1 [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
+
 RewriteRule . index.php [L]
+
 </IfModule>
 <Files ~ "\.env">
     Order allow,deny

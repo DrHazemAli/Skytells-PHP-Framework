@@ -139,7 +139,7 @@ body, html {
 <? if (checkBrowser() == true) {
 
 
-  @header("refresh:4;url=".getUrl());
+  @header("refresh:3;url=".getUrl());
 }else{
 
 } ?>
