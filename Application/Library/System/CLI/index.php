@@ -1,6 +1,6 @@
 <?php
-require str_replace("Library/System/CLI", "", __DIR__)."/Misc/Settings.php";
-require str_replace("Library/System/CLI", "", __DIR__)."/Misc/Config/Terminal.php";
+require dirname(__DIR__). '/../../Misc/Settings.php';
+require dirname(__DIR__). '/../../Misc/Config/Terminal.php';
 // URL: https://www.skytells.net
 global $CLI_CONFIG;
 global $Settings;
