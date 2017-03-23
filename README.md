@@ -5,7 +5,7 @@ Skytells Framework is a free and open source framework for PHP.
 <br>
 Powered by : Skytells, Inc.
 
-[![Build Status](https://travis-ci.org/DrHazemAli/Skytells-PHP-Framework.svg?branch=master)](https://travis-ci.org/DrHazemAli/Skytells-PHP-Framework)
+
 
 ## Important
 
